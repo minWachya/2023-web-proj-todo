@@ -1,0 +1,36 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.9'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+// 메타데이터
+group = 'com.example'	// 배포 시  사용되는 이름
+version = '0.0.1-SNAPSHOT'	// 프로젝트 버전
+sourceCompatibility = '11'	// 자바 버전
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()  // 그래들이 라이브러리 다운로드하는 곳
+}
+
+// 프로젝트에서 사용할 라이브러리 설정
+dependencies {
+	// scope는 ppt 40 참고
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.h2database:h2'
+	annotationProcessor 'org.projectlombok:lombok' // setter, getter 자동화
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+// 테스트 시 사용할 플랫폼
+tasks.named('test') {
+	useJUnitPlatform()
+}
