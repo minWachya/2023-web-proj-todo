@@ -48,6 +48,8 @@ public class TestController {
     public ResponseDTO<String> testControllerResponseBody() {
         List<String> list = new ArrayList<>();
         list.add("Hello, World! I'm ResponseDTO");
+        list.add("민영");
+        list.add("안뇽");
         ResponseDTO<String> response = ResponseDTO.<String>builder().data(list).build();
         return response;
     }
