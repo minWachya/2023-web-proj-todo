@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.ResponseDTO;
 import com.example.demo.dto.TestRequestBodyDTO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -52,5 +53,15 @@ public class TestController {
         list.add("안뇽");
         ResponseDTO<String> response = ResponseDTO.<String>builder().data(list).build();
         return response;
+    }
+
+    // 7. test/testResponseEntity
+    // ResponseEntity: 응답 외의 다른 값(status, header) 보낼 때
+    @GetMapping("/testResponseEntity")
+    public ResponseEntity<?> testControllerResponseEntity() {
+        List<String> list = new ArrayList<>();
+        list.add("Hello, World! I'm ResponseEntity, and you got 200!");
+        ResponseDTO<String> response = ResponseDTO.<String>builder().data(list).build();
+        return ResponseEntity.ok().body(response);  // bad면 ResponseEntity.badRequest().body(response);
     }
 }
