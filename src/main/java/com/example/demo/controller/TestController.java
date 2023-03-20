@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.TestRequestBodyDTO;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -31,4 +32,9 @@ public class TestController {
         return "Hello, World! ID: " + id;
     }
 
+    // 5. test/testRequestParam2?=body~~
+    @GetMapping("/testRequestParam2")
+    public String testControllerRequestParam2(@RequestParam(required = false) TestRequestBodyDTO request) {
+        return "Hello, World! ID: " + request.getId() + " message: " + request.getMessage();
+    }
 }
