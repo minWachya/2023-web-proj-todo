@@ -14,7 +14,7 @@ public class TodoService {
     public String testService() {
         // 생성
         TodoEntity entity = TodoEntity.builder().title("My first todo item").build();
-        // 저장
+        // 저장: h2라는 내부 DB에 저장됨
         repository.save(entity);
         // 검색
         TodoEntity savedEntity = repository.findById(entity.getId()).get();
