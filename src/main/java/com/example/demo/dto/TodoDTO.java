@@ -20,4 +20,13 @@ public class TodoDTO {
         this.title = entity.getTitle();
         this.done = entity.isDone();
     }
+
+    // Controller가 받은 TodoDTO를 TodoEntity로 변환 필요
+    public static TodoEntity toEntity(final TodoDTO dto) {
+        return TodoEntity.builder()
+                .id(dto.getId())
+                .title(dto.getTitle())
+                .done(dto.isDone())
+                .build();
+    }
 }
