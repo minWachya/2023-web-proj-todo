@@ -16,7 +16,7 @@ public interface TodoRepository extends JpaRepository<TodoEntity, String> {
     // Jpa가 자동으로 쿼리 만들어줌...ㄷㄷ
     List<TodoEntity> findByUserId(String userId);
     /* 위의 내용 수동 생성 방법
-    * @Query("select * from t where t.userId =?1")
+    * @Query("select * from t where t.userId =?1", nativeQuery = true)
     * List<TodoEntity> findByUserId(String userId);
     * */
 }
