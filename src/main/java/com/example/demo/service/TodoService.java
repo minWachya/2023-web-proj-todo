@@ -40,6 +40,7 @@ public class TodoService {
         validate(entity);
 
         // entity가 Null이 아닌 경우 실행
+        // put 요청한 todo id와 같은 todo 찾기
         final Optional<TodoEntity> optional = repository.findById(entity.getId());
         optional.ifPresent(todo -> {
             // title, done 수정 후 저장
