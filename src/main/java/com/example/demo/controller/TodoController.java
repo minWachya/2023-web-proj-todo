@@ -85,6 +85,30 @@ public class TodoController {
         return ResponseEntity.ok().body(response);
     }
 
+    @DeleteMapping
+    public ResponseEntity<?> deleteTodo(@RequestBody TodoDTO dto) {
+        try {
+            String temporaryUserId = "temporary-user";
+
+            // dto를 entity로 변경
+            TodoEntity entity = TodoDTO.toEntity(dto);
+            // userid에 임시 id 저장
+            entity.setUserId(temporaryUserId);
+            // entity 삭제 후 userid가 생성한 todo entity 목록 받아옴
+            List<TodoEntity> entities = service.delete(entity);
+            // todo entity 목록을 todo dto 목록으로 변경
+            List<TodoDTO> dtos = entities.stream().map(TodoDTO::new).collect(Collectors.toList());
+            // response 만들어서 출력
+            ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder()
+                    .data(dtos).build();
+            return ResponseEntity.ok().body(response);
+        } catch (Exception e) {
+            String error = e.getMessage();
+            ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().error(error).build();
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
     @GetMapping
     public ResponseEntity<?> retrieveTodoList() {
         String temporaryUserId = "temporary-user";
