@@ -27,8 +27,8 @@ public class UserController {
             // 요청받은 사용자 정보 DTO를 토대로 UserEntity 생성
             UserEntity user = UserEntity.builder()
                     .email(userDTO.getEmail())
-                    .id(userDTO.getId())
                     .username(userDTO.getUsername())
+                    .password(userDTO.getPassword())
                     .build();
             // 생성한 UserEntity를 서버에 저장후 저장한 UserEntity 받아옴
             UserEntity registerUser = userService.create(user);
