@@ -28,6 +28,9 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'		// H2: in-memory 데이터 베이스
 	annotationProcessor 'org.projectlombok:lombok' // setter, getter 자동화
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// JWT 라이브러리 추가
+	compileOnly group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 }
 
 // 테스트 시 사용할 플랫폼
