@@ -62,6 +62,7 @@ public class UserController {
             final UserDTO responseUserDTO = UserDTO.builder()
                     .email(user.getEmail())
                     .id(user.getId())
+                    .username(user.getUsername())
                     .build();
             return ResponseEntity.ok().body(responseUserDTO);
         } else {
