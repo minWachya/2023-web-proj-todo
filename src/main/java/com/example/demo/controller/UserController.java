@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.ResponseDTO;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.model.UserEntity;
+import com.example.demo.security.TokenProvider;
 import com.example.demo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private TokenProvider tokenProvider;
 
     // 회원가입
     @PostMapping("/signup")
@@ -58,11 +62,14 @@ public class UserController {
 
         // 사용자 정보가 있으면
         if(user != null) {
+            // 토큰 생성
+            final String token = tokenProvider.create(user);
             // userDTO 만들어서 반환
             final UserDTO responseUserDTO = UserDTO.builder()
                     .email(user.getEmail())
                     .id(user.getId())
                     .username(user.getUsername())
+                    .token(token)
                     .build();
             return ResponseEntity.ok().body(responseUserDTO);
         } else {
