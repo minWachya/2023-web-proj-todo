@@ -24,12 +24,14 @@ dependencies {
 	// scope는 ppt 40 참고
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'	// JPA: DB 쿼리 날리는 등의 반복 작업 줄여줌
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// compileOnly: 컴파일 할 때만 필요
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'		// H2: in-memory 데이터 베이스
 	annotationProcessor 'org.projectlombok:lombok' // setter, getter 자동화
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	// JWT 라이브러리 추가
+	// 컴파일, 런타임 때 모두 필요
 	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 }
 

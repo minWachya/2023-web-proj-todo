@@ -25,6 +25,7 @@ public class TokenProvider {
         );
 
         /*
+        // "token": "eJ9nVSnbe2qtbUwGGqBrUQ" < 이런 토큰을 디코딩하면 아래와 같은 값이 나옴
         // header
         { "alg": "HS512" } // 알고리즘
         // payload
