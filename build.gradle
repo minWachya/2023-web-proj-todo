@@ -31,8 +31,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	// JWT 라이브러리 추가
-	// 컴파일, 런타임 때 모두 필요
+	// implementation: 컴파일, 런타임 때 모두 필요
 	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+	// 스프링 시큐리티 라이브러리 추가
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 // 테스트 시 사용할 플랫폼
