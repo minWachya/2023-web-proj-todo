@@ -43,14 +43,14 @@ public class TokenProvider {
                 // header
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
                 // payload
-                .setSubject(userEntity.getId())
+                .setSubject(userEntity.getId()) // userId로 Id 속성 사용
                 .setIssuer("demo app")
                 .setIssuedAt(new Date())
                 .setExpiration(expiryDate)
                 .compact();
     }
 
-    // 토큰 안증
+    // 토큰 안증: userId로 Id 속성 사용
     public String validateAndGetUserId(String token) {
         // parseClaimsJws 메서드가 base64로 디코딩 및 파싱
         // 헤더와 페이로드를 setSigningKey로 넘어온 시크릴 키를 이용해 서명한 루 token의 서명과 비교

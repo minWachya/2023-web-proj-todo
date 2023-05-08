@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+// Controller 동작 시 동작하는 Filter
 // 인증 완료되면 생성하는 객체
 @Slf4j
 @Component
@@ -30,6 +31,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         try {
+            // 사용자 인증 끝나면 userId 만들어내는데 이걸 controller에서 사용함
             // 요청에서 토큰 가져오기
             String token = parseBearerToken(request);
             log.info("filter is runing...");
@@ -44,7 +46,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 // 생성자: UsernamePasswordAuthenticationToken(사용자 id, 비밀번호, 사용자 권한(ROLE_ADMIN, ROLE_USER))
                 // SecurityContextHolder에 SecurityContext 등록되면 인증된 사용자라고 인증됨
                 AbstractAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        userId,
+                        userId, // @AuthenticationPrincipal 붙은 인자 값으로 전달됨
                         null,
                         AuthorityUtils.NO_AUTHORITIES // 사용자 권한 없음으로 설정
                 );
