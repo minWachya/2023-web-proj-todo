@@ -20,6 +20,8 @@ import java.io.IOException;
 
 // Controller 동작 시 동작하는 Filter
 // 인증 완료되면 생성하는 객체
+// 요청 올 때마다 토큰 유효한지 검사하는 필터. OncePerRequestFilter 상속.
+// WebSecurityConfig에서 필터 사용되도록 설정
 @Slf4j
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
