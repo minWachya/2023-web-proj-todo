@@ -32,8 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 중요 부분!! 이 부분 없으면 403 에러남
                 // authorizeHttpRequests: auth라는 url이 있는 요청은 모두 허용해줘라.
                 // 나머지 요청은 인증을 해야한다.
-                .authorizeHttpRequests()
-                .antMatchers("/", "/auth/**").permitAll()
+                .authorizeRequests().antMatchers("/", "/auth/**").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterAfter(
